@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     nmap \
     sudo \
     mosquitto-clients \
+    net-tools \
+    vim \
+    iputils-ping \    
     && rm -rf /var/lib/apt/lists/*
 
 # Clone the Moxie repository

@@ -41,8 +41,8 @@ check_mqtt_service() {
         fi
     else
         output=$(mosquitto_pub -h "$ip" -p "$port" -t "test" -m "Testing MQTT service" 2>&1)
-        
-        if echo "$output" | grep -q "Error: Protocol error"; then
+        echo -e "Output: ${output}"
+        if echo "$output" | grep -Eq "TLS error occurred|Error: Protocol error" ; then
             echo -e "${yellow}MQTT service on ${cyan}${ip}:${port}${reset}${yellow} requires certificate.${reset}"
             return 1
         elif echo "$output" | grep -q "not authorised"; then
@@ -81,19 +81,12 @@ brute_force_attack() {
     cert_file=""
 
     echo "$b64_user" | base64 -d > "$username_file"
-    echo -e "Username file: $username_file"
-    cat "$username_file"
-
     echo "$b64_pass" | base64 -d > "$password_file"
-    echo -e "Password file: $password_file"
-    cat "$password_file"
-
+ 
     if [[ -n "$encoded_cert_entry" ]]; then
         b64_cert="${encoded_cert_entry#*base64,}"
         cert_file=$(mktemp)
         echo "$b64_cert" | base64 -d > "$cert_file"
-        echo -e "Certificate file: $cert_file"
-        cat "$cert_file"
     fi
 
     if [[ ! -s "$username_file" || ! -s "$password_file" ]]; then
