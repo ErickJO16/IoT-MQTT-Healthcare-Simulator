@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
     nmap \
     sudo \
     mosquitto-clients \
-    python3 \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone the Moxie repository
