@@ -8,18 +8,18 @@ import ssl
 import random
 
 # MQTT Configuration
-BROKER = "127.0.0.1"
+BROKER = "192.168.100.129"
 PORT = 8883
 DATA_TOPIC = "/patients/ward1/bed1/infusion/data"
-CMD_TOPIC = "/patients/ward1/bed1/infusion_cmd"
-STATUS_TOPIC = "/patients/ward1/bed1/infusion_status"
+CMD_TOPIC = "/patients/ward1/bed1/infusion/cmd"
+STATUS_TOPIC = "/patients/ward1/bed1/infusion/status"
 USERNAME = "myuser"
 PASSWORD = "myuser"
 DEVICE_ID = "infusion_pump_1"
 
 # Infusion parameters
-TOTAL_VOLUME = 500       # ml
-FLOW_RATE_MEAN = 100     # ml/h
+TOTAL_VOLUME = 1000       # ml
+FLOW_RATE_MEAN = 10     # ml/h
 FLOW_RATE_STD = 2        # small variation
 TIME_STEP = 1            # seconds
 infused_volume = 0.0
@@ -28,7 +28,7 @@ client = mqtt.Client(client_id=DEVICE_ID)
 client.username_pw_set(USERNAME, PASSWORD)
 
 client.tls_set(
-    ca_certs="/home/erickjo16/TFM/Environment/mosquitto/certs/ca.crt",
+    ca_certs="/home/debian/IoT/Environment/mosquitto/certs/ca.crt",
     cert_reqs=ssl.CERT_REQUIRED
 )
 client.tls_insecure_set(False)

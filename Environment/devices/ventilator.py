@@ -8,7 +8,7 @@ import ssl
 import numpy as np
 
 # MQTT Configuration
-BROKER = "127.0.0.1"
+BROKER = "192.168.100.129"
 PORT = 8883
 DATA_TOPIC = "/patients/ward1/bed1/ventilator/data"
 CMD_TOPIC = "/patients/ward1/bed1/ventilator/cmd"
@@ -38,7 +38,7 @@ index = 0
 client = mqtt.Client(client_id=DEVICE_ID)
 client.username_pw_set(USERNAME, PASSWORD)
 client.tls_set(
-    ca_certs="/home/erickjo16/TFM/Environment/mosquitto/certs/ca.crt",
+    ca_certs="/home/debian/IoT/Environment/mosquitto/certs/ca.crt",
     cert_reqs=ssl.CERT_REQUIRED
 )
 client.tls_insecure_set(False)
