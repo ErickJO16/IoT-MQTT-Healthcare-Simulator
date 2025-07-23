@@ -3,4 +3,4 @@ node_modules/
 __pycache__/
 .env
 root/
-./Environment/mqtt-env
+/Environment/mqtt-env
